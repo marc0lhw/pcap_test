@@ -73,8 +73,8 @@ int main(int argc, char* argv[]) {
 
 	packet += sizeof(struct libnet_ipv4_hdr);			// TCP 정보 출력
 	TCP_header = (libnet_tcp_hdr*)packet;
-        printf("TCP src : %d\n", TCP_header->th_sport);
-	printf("TCP dst : %d\n", TCP_header->th_dport);
+        printf("TCP src : %d\n", ntohs(TCP_header->th_sport));
+	printf("TCP dst : %d\n", ntohs(TCP_header->th_dport));
 
 	if(Datalen > 0) {						// Data 정보 출력
 		packet += sizeof(struct libnet_tcp_hdr);
@@ -92,8 +92,4 @@ int main(int argc, char* argv[]) {
   pcap_close(handle);
   return 0;
 }
-
-
-
-
 
